@@ -16,6 +16,30 @@ class MealItem extends StatelessWidget {
     @required this.affordability,
   });
 
+  String get complexityText {
+    if (complexity == Complexity.Simple) {
+      return 'Simple';
+    } else if (complexity == Complexity.Challenging) {
+      return 'Challenging';
+    } else if (complexity == Complexity.Hard) {
+      return 'Hard';
+    } else {
+      return 'Unknown';
+    }
+  }
+
+  String get affordabilityText {
+    if (affordability == Affordability.Affordable) {
+      return 'Affordable';
+    } else if (affordability == Affordability.Pricey) {
+      return 'Pricey';
+    } else if (affordability == Affordability.Luxurious) {
+      return 'Luxurious';
+    } else {
+      return 'Unknown';
+    }
+  }
+
   void selectMeal() {}
 
   @override
@@ -27,7 +51,7 @@ class MealItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
         ),
         elevation: 4,
-        margin: EdgeInsets.all(10),
+        margin: EdgeInsets.all(8),
         child: Column(
           children: <Widget>[
             Stack(
@@ -44,8 +68,64 @@ class MealItem extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: Container(
+                    width: 220,
+                    color: Colors.black54,
+                    padding: EdgeInsets.symmetric(
+                      vertical: 5,
+                      horizontal: 10,
+                    ),
+                    child: Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
+                      softWrap: true,
+                      overflow: TextOverflow.fade,
+                    ),
+                  ),
+                )
               ],
             ),
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Icon(Icons.schedule),
+                      SizedBox(
+                        width: 6,
+                      ),
+                      Text('$duration mins')
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Icon(Icons.work),
+                      SizedBox(
+                        width: 6,
+                      ),
+                      Text(complexityText)
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Icon(Icons.attach_money),
+                      SizedBox(
+                        width: 6,
+                      ),
+                      Text(affordabilityText)
+                    ],
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
