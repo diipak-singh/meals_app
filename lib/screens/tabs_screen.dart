@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import './favourites_screen.dart';
 import './categories_screen.dart';
+import '../widgets/main_drawer.dart';
 
 class TabsScreen extends StatefulWidget {
+   static const routeName = '/tabs';
   @override
   _TabsScreenState createState() => _TabsScreenState();
 }
@@ -27,6 +29,7 @@ class _TabsScreenState extends State<TabsScreen> {
             ),
           ]),
         ),
+        drawer: MainDrawer(),
         body: TabBarView(
           children: <Widget>[
             CategoriesScreen(),
